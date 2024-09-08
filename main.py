@@ -3,6 +3,8 @@ from pyzbar.pyzbar import decode
 import numpy as np
 import time
 import requests 
+
+# IP do dispositivo
 ip = "192.168.1.65"
 
 # URL para o ESP32CAM
