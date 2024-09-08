@@ -1,0 +1,2 @@
+Firmware utilizado no Prpjeto:
+micropython_cmake_9fef1c0bd_esp32_idf4.x_ble_camera
