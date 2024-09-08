@@ -3,9 +3,10 @@ from pyzbar.pyzbar import decode
 import numpy as np
 import time
 import requests 
+ip = "192.168.1.65"
 
 # URL para o ESP32CAM
-url = 'http://192.168.79.250'
+url = 'http://'+ip
 
 # Função para enviar a cor do led
 def send_response_to_esp(color):
@@ -90,8 +91,8 @@ while True:
     # Libera o recurso da câmera
     cap.release()
     
-    # Espera por 5 segundos antes de capturar novamente
-    time.sleep(5)
+    # Espera por 5 segundos antes de capturar novamente, ajustar se necessario
+    time.sleep(0.1)
 
     # Para o loop quando a tecla 'q' for pressionada
     if cv2.waitKey(1) & 0xFF == ord('q'):
