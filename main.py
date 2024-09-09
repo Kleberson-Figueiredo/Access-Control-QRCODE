@@ -5,7 +5,7 @@ import time
 import requests 
 
 # IP do dispositivo
-ip = "192.168.1.65"
+ip = "192.168.79.250"
 
 # URL para o ESP32CAM
 url = 'http://'+ip
@@ -23,22 +23,41 @@ def send_response_to_esp(color):
 
 # Função para validar o QRcode
 def validate_qrcode(qr_data):
-    print(f"Validando QR code: {qr_data}")
-    send_response_to_esp("Yellow")
-    print("PROCESSANDO")
-    user = "test"
-    if qr_data == user:
-        if user:
-            print("APROVADO")
-            send_response_to_esp("green")
-    else:
-        print("REPROVADO")
-        send_response_to_esp("red")
+    
+#    print(f"Validando QR code: {qr_data}")
+#    send_response_to_esp("Yellow")
+#    print("PROCESSANDO")
+#    user = "test"
+#    if qr_data == user:
+#        if user:
+#            print("APROVADO")
+#            send_response_to_esp("green")
+#    else:
+#        print("REPROVADO")
+#        send_response_to_esp("red")
 
     
     # Exemplo de requisição para validar o QR code em uma API
-    # response = requests.post('http://api-url/validate', json={'qrcode': qr_data})
-    # return response.status_code == 200
+    try:
+        print(f"Validando QR code: {qr_data}")
+        send_response_to_esp("Yellow")
+        print("PROCESSANDO")
+        response = requests.get(f'http://localhost:3000/qr-code/{qr_data}')
+        # return response.status_code == 200
+        if response.status_code  == 200:    
+             print("APROVADO")
+             send_response_to_esp("green")
+        else:
+            print("REPROVADO")
+            send_response_to_esp("red")
+    except Exception as e:
+        print("SEM CONEXÃO COM A API")
+        send_response_to_esp("red")
+        print(f"Error: {e}")
+        
+        
+    
+    
 
 # Loop contínuo para capturar QRcode a cada 5 segundos
 while True:
