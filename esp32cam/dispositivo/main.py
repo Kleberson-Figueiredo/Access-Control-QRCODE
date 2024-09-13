@@ -93,14 +93,13 @@ try:
             cl.close()
             time.sleep(3)
             control_led(color=0)
+            
+    # Configuração e execução
+    ssid = 'brasil' # Nome do wifi
+    password = '123456789' # Senha do wifi 
+    connect_wifi(ssid, password)
+    setup_camera()
+    start_server()
 except Exception as e:
-    print(f"Erro: {e}")
+    print("Erro: ",e)
     control_led(color="red")
-    
-# Configuração e execução
-ssid = 'brasil' # Nome do wifi
-password = '123456789' # Senha do wifi 
-connect_wifi(ssid, password)
-setup_camera()
-start_server()
-

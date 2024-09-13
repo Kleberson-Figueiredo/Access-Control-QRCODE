@@ -42,7 +42,7 @@ def validate_qrcode(qr_data):
         print(f"Validando QR code: {qr_data}")
         send_response_to_esp("Yellow")
         print("PROCESSANDO")
-        response = requests.get(f'http://localhost:3000/qr-code/{qr_data}')
+        response = requests.get(f'http://192.168.79.18:8000/qr-code/{qr_data}')
         # return response.status_code == 200
         if response.status_code  == 200:    
              print("APROVADO")
